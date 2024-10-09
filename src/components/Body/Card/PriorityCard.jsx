@@ -1,12 +1,12 @@
 import React from "react";
-import urgentPriority from "../../../assets/icons_FEtask/SVG - Urgent Priority grey.svg";
 import noPriority from "../../../assets/icons_FEtask/No_priority.svg";
 import lowPriority from "../../../assets/icons_FEtask/Img_LowPriority.svg";
 import mediumPriority from "../../../assets/icons_FEtask/Img_MediumPriority.svg";
 import highPriority from "../../../assets/icons_FEtask/Img_HighPriority.svg";
-import To_do from "../../../assets/icons_FEtask/To_do.svg";
+import urgentPriority from "../../../assets/icons_FEtask/urgentPriorityGrey.svg";
+import { selectImageHandler } from "../../../utils/handlers";
 
-export default function PriorityCard({ item }) {
+export default function PriorityCard({ item, usersData }) {
   const priorityHandler = (priority) => {
     if (priority === 0) return "No priority";
     else if (priority === 1) return "Low";
@@ -30,10 +30,32 @@ export default function PriorityCard({ item }) {
         borderColor: "#ccc",
         borderStyle: "solid",
         margin: 5,
-        padding: 10, // Added padding for better spacing
+        padding: 10,
+        borderRadius: 5,
+        width: "98%",
+        height: 80,
+        backgroundColor: "white",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Added shadow
       }}
     >
-      <p>{item.id}</p>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ fontSize: 12 }}>{item.id}</div>
+        <span
+          style={{
+            backgroundColor: "orange",
+            borderRadius: 15,
+            width: 22,
+            textAlign: "center",
+          }}
+        ></span>
+      </div>
       <div
         style={{
           display: "flex",
@@ -42,12 +64,14 @@ export default function PriorityCard({ item }) {
           gap: 5,
         }}
       >
-        <img src={To_do} alt="To Do" />
-        <div style={{ fontWeight: "bold", color: "gray" }}>{item.title}</div>
+        {console.log("ITEM BSNHBAD : ", item)}
+        <img src={selectImageHandler(item.status)} alt="To Do" />
+        <div style={{ fontWeight: "bold", color: "black", fontSize: 12 }}>
+          {item.title.length > 40
+            ? item.title.slice(0, 40) + "..."
+            : item.title}
+        </div>
       </div>
-      <img src={urgentPriority} alt="Urgent" />
-      <p>{priorityHandler(item.priority)}</p>
-      <img src={imagePriorityHandler(item.priority)} alt="" />
 
       <div
         style={{
@@ -57,8 +81,14 @@ export default function PriorityCard({ item }) {
           gap: 5,
         }}
       >
-        <img src={To_do} alt="To Do" />
-        <div style={{ fontWeight: "bold", color: "gray" }}>{item.tag[0]}</div>
+        <img
+          src={imagePriorityHandler(item.priority)}
+          style={{ marginRight: 4 }}
+        />
+
+        <div style={{ fontWeight: "bold", color: "gray", fontSize: 12 }}>
+          {item.tag[0]}
+        </div>
       </div>
     </div>
   );

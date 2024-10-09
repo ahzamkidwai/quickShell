@@ -2,11 +2,6 @@ import React, { useEffect, useState } from "react";
 import add from "../../../assets/icons_FEtask/add.svg";
 import dot_menu from "../../../assets/icons_FEtask/3_dot_menu.svg";
 import UserCard from "../Card/UserCard";
-import Cancelled from "../../../assets/icons_FEtask/Cancelled.svg";
-import Done from "../../../assets/icons_FEtask/Done.svg";
-import in_progress from "../../../assets/icons_FEtask/in_progress.svg";
-import Backlog from "../../../assets/icons_FEtask/Backlog.svg";
-import To_do from "../../../assets/icons_FEtask/To_do.svg";
 
 export default function GroupDataByUsers({ ticketsData, usersData }) {
   const [anoopData, setAnoopData] = useState([]);
@@ -29,23 +24,6 @@ export default function GroupDataByUsers({ ticketsData, usersData }) {
         return rameshData.length;
       case "Suresh":
         return sureshData.length;
-      default:
-        return 0;
-    }
-  };
-
-  const getImageLogo = (item) => {
-    switch (item) {
-      case "Backlog":
-        return Backlog;
-      case "Todo":
-        return To_do;
-      case "In Progress":
-        return in_progress;
-      case "Done":
-        return Done;
-      case "Cancelled":
-        return Cancelled;
       default:
         return 0;
     }
@@ -179,7 +157,6 @@ export default function GroupDataByUsers({ ticketsData, usersData }) {
               >
                 {getInitials(item)}
               </span>
-              {/* <img src={getImageLogo(item)} style={{ paddingLeft: "14px" }} /> */}
               <h3 style={{ fontWeight: "normal", fontSize: 16 }}>{item}</h3>
               <h4 style={{ marginLeft: "8px", color: "gray" }}>
                 {getLength(item)}
