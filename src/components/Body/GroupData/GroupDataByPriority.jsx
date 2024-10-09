@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import add from "../../../assets/icons_FEtask/add.svg";
 import dot_menu from "../../../assets/icons_FEtask/3_dot_menu.svg";
-import noPriorityImg from "../../../assets/icons_FEtask/No_priority.svg";
-import lowPriorityImg from "../../../assets/icons_FEtask/Img_LowPriority.svg";
-import mediumPriorityImg from "../../../assets/icons_FEtask/Img_MediumPriority.svg";
-import highPriorityImg from "../../../assets/icons_FEtask/Img_HighPriority.svg";
-import urgentPriorityImg from "../../../assets/icons_FEtask/urgentPriorityGrey.svg";
 import PriorityCard from "../Card/PriorityCard";
 import { imagePriorityHandler } from "../../../utils/handlers";
 

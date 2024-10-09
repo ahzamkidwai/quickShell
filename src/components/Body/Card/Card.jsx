@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import To_do from "../../../assets/icons_FEtask/To_do.svg";
 import { getInitials, imagePriorityHandler } from "../../../utils/handlers";
+import "./Card.css"; // Import the CSS file
 
 export default function Card({ item, usersData }) {
   const [userName, setUserName] = useState("");
@@ -21,72 +22,28 @@ export default function Card({ item, usersData }) {
   }, [usersData, item]);
 
   return (
-    <div
-      style={{
-        borderWidth: 2,
-        borderColor: "#ccc",
-        borderStyle: "solid",
-        margin: 5,
-        padding: 10,
-        borderRadius: 5,
-        width: "98%",
-        height: 80,
-        backgroundColor: "white",
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Added shadow
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
+    <div className="card">
+      <div className="card-header">
         <div style={{ fontSize: 12 }}>{item.id}</div>
-        <span
-          style={{
-            backgroundColor: "orange",
-            borderRadius: 15,
-            width: 22,
-            textAlign: "center",
-          }}
-        >
-          {getInitials(userName)}
-        </span>
+        <span className="initials">{getInitials(userName)}</span>
       </div>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          padding: 5,
-          gap: 5,
-        }}
-      >
+      <div className="card-content">
         <img src={To_do} alt="To Do" />
-        <div style={{ fontWeight: "bold", color: "black", fontSize: 12 }}>
+        <div className="card-title">
           {item.title.length > 40
             ? item.title.slice(0, 40) + "..."
             : item.title}
         </div>
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          padding: 5,
-          gap: 5,
-        }}
-      >
+      <div className="card-tag">
         <img
           src={imagePriorityHandler(item.priority)}
           style={{ marginRight: 4 }}
+          alt="Priority"
         />
         <img src={To_do} alt="To Do" style={{ marginRight: 4 }} />
-        <div style={{ fontWeight: "bold", color: "gray", fontSize: 12 }}>
-          {item.tag[0]}
-        </div>
+        <div className="card-tag-text">{item.tag[0]}</div>
       </div>
     </div>
   );

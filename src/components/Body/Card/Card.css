@@ -1,0 +1,54 @@
+/* Card.css */
+.card {
+    border-width: 2px;
+    border-color: #ccc;
+    border-style: solid;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 98%;
+    height: 80px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Added shadow */
+}
+
+.card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.initials {
+    background-color: orange;
+    border-radius: 15px;
+    width: 22px;
+    text-align: center;
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    gap: 5px;
+}
+
+.card-title {
+    font-weight: bold;
+    color: black;
+    font-size: 12px;
+}
+
+.card-tag {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    gap: 5px;
+}
+
+.card-tag-text {
+    font-weight: bold;
+    color: gray;
+    font-size: 12px;
+}
