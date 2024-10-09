@@ -33,9 +33,11 @@ export default function Card({ item }) {
         margin: 5,
         padding: 10,
         borderRadius: 5,
+        width: "94%",
+        height: 100,
       }}
     >
-      <div>{item.id}</div>
+      <div tyle={{ fontSize: 12 }}>{item.id}</div>
       <div
         style={{
           display: "flex",
@@ -45,11 +47,12 @@ export default function Card({ item }) {
         }}
       >
         <img src={To_do} alt="To Do" />
-        <div style={{ fontWeight: "bold", color: "gray" }}>{item.title}</div>
+        <div style={{ fontWeight: "bold", color: "black", fontSize: 12 }}>
+          {item.title.length > 40
+            ? item.title.slice(0, 40) + "..."
+            : item.title}
+        </div>
       </div>
-      {/* <img src={urgentPriority} alt="Urgent" />
-      <p>{priorityHandler(item.priority)}</p>
-      <img src={imagePriorityHandler(item.priority)} alt="" /> */}
 
       <div
         style={{
@@ -59,8 +62,14 @@ export default function Card({ item }) {
           gap: 5,
         }}
       >
-        <img src={To_do} alt="To Do" />
-        <div style={{ fontWeight: "bold", color: "gray" }}>{item.tag[0]}</div>
+        <img
+          src={imagePriorityHandler(item.priority)}
+          style={{ marginRight: 4 }}
+        />
+        <img src={To_do} alt="To Do" style={{ marginRight: 4 }} />
+        <div style={{ fontWeight: "bold", color: "gray", fontSize: 12 }}>
+          {item.tag[0]}
+        </div>
       </div>
     </div>
   );

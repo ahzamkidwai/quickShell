@@ -23,130 +23,83 @@ export default function GroupDataByStatus({ ticketsData, usersData }) {
   }, [ticketsData]);
 
   return (
-    <div>
-      <div>GroupDataByStatus</div>
-      {status.map((item) => (
-        <div key={item}>
-          {/* Backlog Section */}
-          {item === "Backlog" && (
-            <>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  borderWidth: 1,
-                  borderColor: "red",
-                  borderStyle: "solid",
-                }}
-              >
-                <h3>{item}</h3>
-                <h3 style={{ marginLeft: "8px" }}>{backlogData.length}</h3>{" "}
-                {/* Add margin here */}
+    <div
+      style={{
+        padding: 10,
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "16px",
+        }}
+      >
+        {status.map((item, index) => (
+          <div key={index} style={{ textAlign: "center", display: "flex" }}>
+            <h3>{item}</h3>
+            <h4 style={{ marginLeft: "8px" }}>
+              {item === "Backlog"
+                ? backlogData.length
+                : item === "Todo"
+                ? todoData.length
+                : item === "In Progress"
+                ? inProgressData.length
+                : item === "Done"
+                ? doneData.length
+                : item === "Cancelled"
+                ? cancelledData.length
+                : 0}
+            </h4>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        {status.map((item) => (
+          <div key={item} style={{ flex: 1, marginRight: "36px" }}>
+            {item === "Backlog" && (
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                {backlogData?.map((dataItem) => (
+                  <Card key={dataItem.id} item={dataItem} />
+                ))}
               </div>
+            )}
 
-              {backlogData?.map((dataItem) => (
-                <Card key={dataItem.id} item={dataItem} />
-              ))}
-            </>
-          )}
-
-          {/* Todo Section */}
-          {item === "Todo" && (
-            <>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  borderWidth: 1,
-                  borderColor: "blue",
-                  borderStyle: "solid",
-                }}
-              >
-                <h3>{item}</h3>
-                <h3 style={{ marginLeft: "8px" }}>{todoData.length}</h3>{" "}
-                {/* Add margin here */}
+            {item === "Todo" && (
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                {todoData?.map((dataItem) => (
+                  <Card key={dataItem.id} item={dataItem} />
+                ))}
               </div>
+            )}
 
-              {todoData?.map((dataItem) => (
-                <Card key={dataItem.id} item={dataItem} />
-              ))}
-            </>
-          )}
-
-          {/* In Progress Section */}
-          {item === "In Progress" && (
-            <>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  borderWidth: 1,
-                  borderColor: "green",
-                  borderStyle: "solid",
-                }}
-              >
-                <h3>{item}</h3>
-                <h3 style={{ marginLeft: "8px" }}>
-                  {inProgressData.length}
-                </h3>{" "}
-                {/* Add margin here */}
+            {item === "In Progress" && (
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                {inProgressData?.map((dataItem) => (
+                  <Card key={dataItem.id} item={dataItem} />
+                ))}
               </div>
+            )}
 
-              {inProgressData?.map((dataItem) => (
-                <Card key={dataItem.id} item={dataItem} />
-              ))}
-            </>
-          )}
-
-          {/* Done Section */}
-          {item === "Done" && (
-            <>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  borderWidth: 1,
-                  borderColor: "purple",
-                  borderStyle: "solid",
-                }}
-              >
-                <h3>{item}</h3>
-                <h3 style={{ marginLeft: "8px" }}>{doneData.length}</h3>{" "}
-                {/* Add margin here */}
+            {item === "Done" && (
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                {doneData?.map((dataItem) => (
+                  <Card key={dataItem.id} item={dataItem} />
+                ))}
               </div>
+            )}
 
-              {doneData?.map((dataItem) => (
-                <Card key={dataItem.id} item={dataItem} />
-              ))}
-            </>
-          )}
-
-          {/* Cancelled Section */}
-          {item === "Cancelled" && (
-            <>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  borderWidth: 1,
-                  borderColor: "grey",
-                  borderStyle: "solid",
-                }}
-              >
-                <h3>{item}</h3>
-                <h3 style={{ marginLeft: "8px" }}>
-                  {cancelledData.length}
-                </h3>{" "}
-                {/* Add margin here */}
+            {item === "Cancelled" && (
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                {cancelledData?.map((dataItem) => (
+                  <Card key={dataItem.id} item={dataItem} />
+                ))}
               </div>
-
-              {cancelledData?.map((dataItem) => (
-                <Card key={dataItem.id} item={dataItem} />
-              ))}
-            </>
-          )}
-        </div>
-      ))}
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
