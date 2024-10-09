@@ -1,29 +1,32 @@
 import React, { useEffect, useState } from "react";
 import add from "../../../assets/icons_FEtask/add.svg";
 import dot_menu from "../../../assets/icons_FEtask/3_dot_menu.svg";
-
-import Cancelled from "../../../assets/icons_FEtask/Cancelled.svg";
-import Done from "../../../assets/icons_FEtask/Done.svg";
-import in_progress from "../../../assets/icons_FEtask/in_progress.svg";
-import Backlog from "../../../assets/icons_FEtask/Backlog.svg";
-import To_do from "../../../assets/icons_FEtask/To_do.svg";
 import noPriorityImg from "../../../assets/icons_FEtask/No_priority.svg";
 import lowPriorityImg from "../../../assets/icons_FEtask/Img_LowPriority.svg";
 import mediumPriorityImg from "../../../assets/icons_FEtask/Img_MediumPriority.svg";
 import highPriorityImg from "../../../assets/icons_FEtask/Img_HighPriority.svg";
 import urgentPriorityImg from "../../../assets/icons_FEtask/urgentPriorityGrey.svg";
-import PriorityCardImg from "../Card/PriorityCard";
 import PriorityCard from "../Card/PriorityCard";
+import { imagePriorityHandler } from "../../../utils/handlers";
 
-export default function GroupDataByPriority({ ticketsData, usersData }) {
+export default function GroupDataByPriority({
+  ticketsData,
+  usersData,
+  orderData,
+}) {
   const [noPriority, setNoPriority] = useState([]);
   const [urgentPriority, setUrgentPriority] = useState([]);
   const [highPriority, setHighPriority] = useState([]);
   const [mediumPriority, setMediumPriority] = useState([]);
   const [lowPriority, setLowPriority] = useState([]);
+  console.log("ORDER DATA:", orderData);
 
-  const allPriorities = ["No Priority", "Low", "Medium", "High", "Urgent"];
+  const allPriorities =
+    orderData === " Priority"
+      ? ["No Priority", "Low", "Medium", "High", "Urgent"]
+      : ["Urgent", "High", "Medium", "Low", "No Priority"];
 
+  console.log("Alll Priori : ", allPriorities);
   useEffect(() => {
     if (ticketsData.length > 0) {
       const noPriorityTickets = ticketsData.filter(
@@ -54,20 +57,6 @@ export default function GroupDataByPriority({ ticketsData, usersData }) {
       setHighPriority(urgentPriorityTickets);
     }
   }, [usersData, ticketsData]);
-
-  const getInitials = (name) => {
-    const words = name.split(" ");
-    const initials = words.map((word) => word.charAt(0).toUpperCase()).join("");
-    return initials;
-  };
-
-  const imagePriorityHandler = (priority) => {
-    if (priority === "No Priority") return noPriorityImg;
-    else if (priority === "Low") return lowPriorityImg;
-    else if (priority === "Medium") return mediumPriorityImg;
-    else if (priority === "High") return highPriorityImg;
-    else if (priority === "Urgent") return urgentPriorityImg;
-  };
 
   return (
     <div
@@ -102,27 +91,11 @@ export default function GroupDataByPriority({ ticketsData, usersData }) {
                 gap: 5,
               }}
             >
-              {/* <span
-                style={{
-                  backgroundColor: "orange",
-                  borderRadius: 15,
-                  width: 22,
-                  textAlign: "center",
-                  marginLeft: "10px",
-                }}
-              >
-                {getInitials(item)}
-              </span> */}
-
-              {console.log("itemfbb : ", item)}
               <img
                 src={imagePriorityHandler(item)}
                 style={{ marginRight: 4 }}
               />
               <h3 style={{ fontWeight: "normal", fontSize: 16 }}>{item}</h3>
-              {/* <h4 style={{ marginLeft: "8px", color: "gray" }}>
-                {getLength(item)}
-              </h4> */}
             </div>
             <div
               style={{

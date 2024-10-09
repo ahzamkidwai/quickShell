@@ -46,7 +46,6 @@ export default function UserCard({ item, usersData }) {
           gap: 5,
         }}
       >
-        {console.log("ITEM BSNHBAD : ", item)}
         <img src={selectImageHandler(item.status)} alt="To Do" />
         <div style={{ fontWeight: "bold", color: "black", fontSize: 12 }}>
           {item.title.length > 40

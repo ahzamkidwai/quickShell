@@ -1,28 +1,10 @@
 import React from "react";
-import noPriority from "../../../assets/icons_FEtask/No_priority.svg";
-import lowPriority from "../../../assets/icons_FEtask/Img_LowPriority.svg";
-import mediumPriority from "../../../assets/icons_FEtask/Img_MediumPriority.svg";
-import highPriority from "../../../assets/icons_FEtask/Img_HighPriority.svg";
-import urgentPriority from "../../../assets/icons_FEtask/urgentPriorityGrey.svg";
-import { selectImageHandler } from "../../../utils/handlers";
+import {
+  imagePriorityHandler,
+  selectImageHandler,
+} from "../../../utils/handlers";
 
 export default function PriorityCard({ item, usersData }) {
-  const priorityHandler = (priority) => {
-    if (priority === 0) return "No priority";
-    else if (priority === 1) return "Low";
-    else if (priority === 2) return "Medium";
-    else if (priority === 3) return "High";
-    else if (priority === 4) return "Urgent";
-  };
-
-  const imagePriorityHandler = (priority) => {
-    if (priority === 0) return noPriority;
-    else if (priority === 1) return lowPriority;
-    else if (priority === 2) return mediumPriority;
-    else if (priority === 3) return highPriority;
-    else if (priority === 4) return urgentPriority;
-  };
-
   return (
     <div
       style={{
@@ -64,7 +46,6 @@ export default function PriorityCard({ item, usersData }) {
           gap: 5,
         }}
       >
-        {console.log("ITEM BSNHBAD : ", item)}
         <img src={selectImageHandler(item.status)} alt="To Do" />
         <div style={{ fontWeight: "bold", color: "black", fontSize: 12 }}>
           {item.title.length > 40

@@ -12,7 +12,6 @@ export default function Card({ item, usersData }) {
       );
 
       if (userName) {
-        console.log("USER NAME: ", userName.name);
         let name = userName.name;
         setUserName(name);
       } else {

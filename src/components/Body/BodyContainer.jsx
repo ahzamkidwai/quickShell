@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Card from "./Card/Card";
 import GroupDataByStatus from "./GroupData/GroupDataByStatus";
 import GroupDataByUsers from "./GroupData/GroupDataByUsers";
 import GroupDataByPriority from "./GroupData/GroupDataByPriority";
@@ -25,7 +24,11 @@ export default function BodyContainer({ data, groupData, orderData }) {
         <GroupDataByStatus ticketsData={ticketsData} usersData={usersData} />
       )}
       {groupData === "Priority" && (
-        <GroupDataByPriority ticketsData={ticketsData} usersData={usersData} />
+        <GroupDataByPriority
+          ticketsData={ticketsData}
+          usersData={usersData}
+          orderData={orderData}
+        />
       )}
       {groupData === "User" && (
         <GroupDataByUsers ticketsData={ticketsData} usersData={usersData} />
