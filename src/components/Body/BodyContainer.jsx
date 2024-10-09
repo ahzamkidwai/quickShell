@@ -6,7 +6,6 @@ export default function BodyContainer({ data }) {
   const [usersData, setUsersData] = useState([]);
 
   useEffect(() => {
-    console.log("Hello Ji");
     if (data?.tickets?.length > 0) {
       setTicketsData(data.tickets);
       console.log("Tickets Data : ", ticketsData);
@@ -18,7 +17,7 @@ export default function BodyContainer({ data }) {
   }, [data]);
 
   return (
-    <div style={{ backgroundColor: "#5F7171" }}>
+    <div style={{}}>
       {ticketsData?.map((item, index) => {
         return <Card item={item} />;
       })}

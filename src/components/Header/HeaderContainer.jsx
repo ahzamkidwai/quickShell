@@ -22,13 +22,15 @@ const styleModal = {
   p: 2,
 };
 
-export default function HeaderContainer() {
+export default function HeaderContainer({
+  groupData,
+  setGroupData,
+  orderData,
+  setOrderData,
+}) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  const [groupData, setGroupData] = useState("");
-  const [orderData, setOrderData] = useState("");
 
   const groupDataItem = [
     { id: 1, label: "Status" },
