@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import urgentPriority from "../../../assets/icons_FEtask/SVG - Urgent Priority grey.svg";
 import noPriority from "../../../assets/icons_FEtask/No_priority.svg";
 import lowPriority from "../../../assets/icons_FEtask/Img_LowPriority.svg";
@@ -6,8 +6,31 @@ import mediumPriority from "../../../assets/icons_FEtask/Img_MediumPriority.svg"
 import highPriority from "../../../assets/icons_FEtask/Img_HighPriority.svg";
 import To_do from "../../../assets/icons_FEtask/To_do.svg";
 
-export default function Card({ item }) {
-  console.log("ITEM  : ", item);
+export default function Card({ item, usersData }) {
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    if (usersData && item) {
+      const userName = usersData.find(
+        (userItem) => userItem.id === item.userId
+      );
+
+      if (userName) {
+        console.log("USER NAME: ", userName.name);
+        let name = userName.name;
+        setUserName(name);
+      } else {
+        console.log("User not found");
+      }
+    }
+  }, [usersData, item]);
+
+  const getInitials = (name) => {
+    const words = name.split(" ");
+    const initials = words.map((word) => word.charAt(0).toUpperCase()).join("");
+    return initials;
+  };
+
   const priorityHandler = (priority) => {
     if (priority === 0) return "No priority";
     else if (priority === 1) return "Low";
@@ -33,11 +56,32 @@ export default function Card({ item }) {
         margin: 5,
         padding: 10,
         borderRadius: 5,
-        width: "94%",
-        height: 100,
+        width: "98%",
+        height: 80,
+        backgroundColor: "white",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Added shadow
       }}
     >
-      <div tyle={{ fontSize: 12 }}>{item.id}</div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ fontSize: 12 }}>{item.id}</div>
+        <span
+          style={{
+            backgroundColor: "orange",
+            borderRadius: 15,
+            width: 22,
+            textAlign: "center",
+          }}
+        >
+          {getInitials(userName)}
+        </span>
+      </div>
       <div
         style={{
           display: "flex",

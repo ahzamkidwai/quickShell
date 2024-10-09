@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Card from "../Card/Card";
+import Cancelled from "../../../assets/icons_FEtask/Cancelled.svg";
+import Done from "../../../assets/icons_FEtask/Done.svg";
+import in_progress from "../../../assets/icons_FEtask/in_progress.svg";
+import Backlog from "../../../assets/icons_FEtask/Backlog.svg";
+import To_do from "../../../assets/icons_FEtask/To_do.svg";
+import add from "../../../assets/icons_FEtask/add.svg";
+import dot_menu from "../../../assets/icons_FEtask/3_dot_menu.svg";
 
 export default function GroupDataByStatus({ ticketsData, usersData }) {
   const status = ["Backlog", "Todo", "In Progress", "Done", "Cancelled"];
@@ -9,6 +16,40 @@ export default function GroupDataByStatus({ ticketsData, usersData }) {
   const [inProgressData, setInProgressData] = useState([]);
   const [doneData, setDoneData] = useState([]);
   const [cancelledData, setCancelledData] = useState([]);
+
+  const getLength = (item) => {
+    switch (item) {
+      case "Backlog":
+        return backlogData.length;
+      case "Todo":
+        return todoData.length;
+      case "In Progress":
+        return inProgressData.length;
+      case "Done":
+        return doneData.length;
+      case "Cancelled":
+        return cancelledData.length;
+      default:
+        return 0;
+    }
+  };
+
+  const getImageLogo = (item) => {
+    switch (item) {
+      case "Backlog":
+        return Backlog;
+      case "Todo":
+        return To_do;
+      case "In Progress":
+        return in_progress;
+      case "Done":
+        return Done;
+      case "Cancelled":
+        return Cancelled;
+      default:
+        return 0;
+    }
+  };
 
   useEffect(() => {
     setBacklogData(ticketsData.filter((ticket) => ticket.status === "Backlog"));
@@ -36,21 +77,41 @@ export default function GroupDataByStatus({ ticketsData, usersData }) {
         }}
       >
         {status.map((item, index) => (
-          <div key={index} style={{ textAlign: "center", display: "flex" }}>
-            <h3>{item}</h3>
-            <h4 style={{ marginLeft: "8px" }}>
-              {item === "Backlog"
-                ? backlogData.length
-                : item === "Todo"
-                ? todoData.length
-                : item === "In Progress"
-                ? inProgressData.length
-                : item === "Done"
-                ? doneData.length
-                : item === "Cancelled"
-                ? cancelledData.length
-                : 0}
-            </h4>
+          <div
+            key={index}
+            style={{
+              textAlign: "center",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "80%",
+              width: 272,
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                alignItems: "center",
+                gap: 5,
+              }}
+            >
+              <img src={getImageLogo(item)} style={{ paddingLeft: "14px" }} />
+              <h3 style={{ fontWeight: "normal", fontSize: 16 }}>{item}</h3>
+              <h4 style={{ marginLeft: "8px", color: "gray" }}>
+                {getLength(item)}
+              </h4>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                alignItems: "center",
+              }}
+            >
+              <img src={add} alt="" />
+              <img src={dot_menu} alt="" />
+            </div>
           </div>
         ))}
       </div>
@@ -61,7 +122,11 @@ export default function GroupDataByStatus({ ticketsData, usersData }) {
             {item === "Backlog" && (
               <div style={{ display: "flex", flexDirection: "column" }}>
                 {backlogData?.map((dataItem) => (
-                  <Card key={dataItem.id} item={dataItem} />
+                  <Card
+                    key={dataItem.id}
+                    item={dataItem}
+                    usersData={usersData}
+                  />
                 ))}
               </div>
             )}
@@ -69,7 +134,11 @@ export default function GroupDataByStatus({ ticketsData, usersData }) {
             {item === "Todo" && (
               <div style={{ display: "flex", flexDirection: "column" }}>
                 {todoData?.map((dataItem) => (
-                  <Card key={dataItem.id} item={dataItem} />
+                  <Card
+                    key={dataItem.id}
+                    item={dataItem}
+                    usersData={usersData}
+                  />
                 ))}
               </div>
             )}
@@ -77,7 +146,11 @@ export default function GroupDataByStatus({ ticketsData, usersData }) {
             {item === "In Progress" && (
               <div style={{ display: "flex", flexDirection: "column" }}>
                 {inProgressData?.map((dataItem) => (
-                  <Card key={dataItem.id} item={dataItem} />
+                  <Card
+                    key={dataItem.id}
+                    item={dataItem}
+                    usersData={usersData}
+                  />
                 ))}
               </div>
             )}
@@ -85,7 +158,11 @@ export default function GroupDataByStatus({ ticketsData, usersData }) {
             {item === "Done" && (
               <div style={{ display: "flex", flexDirection: "column" }}>
                 {doneData?.map((dataItem) => (
-                  <Card key={dataItem.id} item={dataItem} />
+                  <Card
+                    key={dataItem.id}
+                    item={dataItem}
+                    usersData={usersData}
+                  />
                 ))}
               </div>
             )}
@@ -93,7 +170,11 @@ export default function GroupDataByStatus({ ticketsData, usersData }) {
             {item === "Cancelled" && (
               <div style={{ display: "flex", flexDirection: "column" }}>
                 {cancelledData?.map((dataItem) => (
-                  <Card key={dataItem.id} item={dataItem} />
+                  <Card
+                    key={dataItem.id}
+                    item={dataItem}
+                    usersData={usersData}
+                  />
                 ))}
               </div>
             )}

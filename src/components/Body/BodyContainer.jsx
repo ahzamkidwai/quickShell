@@ -20,7 +20,7 @@ export default function BodyContainer({ data, groupData, orderData }) {
   }, [data]);
 
   return (
-    <div style={{}}>
+    <div style={{ backgroundColor: "#edf9ff" }}>
       {groupData === "Status" && (
         <GroupDataByStatus ticketsData={ticketsData} usersData={usersData} />
       )}
