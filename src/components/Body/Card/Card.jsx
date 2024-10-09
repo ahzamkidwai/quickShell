@@ -7,6 +7,7 @@ import highPriority from "../../../assets/icons_FEtask/Img_HighPriority.svg";
 import To_do from "../../../assets/icons_FEtask/To_do.svg";
 
 export default function Card({ item }) {
+  console.log("ITEM  : ", item);
   const priorityHandler = (priority) => {
     if (priority === 0) return "No priority";
     else if (priority === 1) return "Low";
