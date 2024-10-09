@@ -54,7 +54,14 @@ export default function HeaderContainer({
   };
 
   return (
-    <div style={{ margin: 10, backgroundColor: "white", paddingBottom: 20 }}>
+    <div
+      style={{
+        margin: 10,
+        backgroundColor: "white",
+        paddingBottom: 20,
+        paddingTop: 20,
+      }}
+    >
       <div
         style={{
           borderWidth: 2,
