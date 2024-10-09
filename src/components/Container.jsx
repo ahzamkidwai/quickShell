@@ -13,7 +13,7 @@ function Container({ data }) {
         orderData={orderData}
         setOrderData={setOrderData}
       />
-      <BodyContainer data={data} />
+      <BodyContainer data={data} groupData={groupData} orderData={orderData} />
     </>
   );
 }

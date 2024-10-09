@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card/Card";
+import GroupDataByStatus from "./GroupData/GroupDataByStatus";
+import GroupDataByUsers from "./GroupData/GroupDataByUsers";
+import GroupDataByPriority from "./GroupData/GroupDataByPriority";
 
-export default function BodyContainer({ data }) {
+export default function BodyContainer({ data, groupData, orderData }) {
   const [ticketsData, setTicketsData] = useState([]);
   const [usersData, setUsersData] = useState([]);
 
@@ -18,9 +21,15 @@ export default function BodyContainer({ data }) {
 
   return (
     <div style={{}}>
-      {ticketsData?.map((item, index) => {
-        return <Card item={item} />;
-      })}
+      {groupData === "Status" && (
+        <GroupDataByStatus ticketsData={ticketsData} usersData={usersData} />
+      )}
+      {groupData === "Priority" && (
+        <GroupDataByPriority ticketsData={ticketsData} usersData={usersData} />
+      )}
+      {groupData === "User" && (
+        <GroupDataByUsers ticketsData={ticketsData} usersData={usersData} />
+      )}
     </div>
   );
 }
