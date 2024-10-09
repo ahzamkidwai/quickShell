@@ -1,7 +1,10 @@
-import "./App.css";
+import React, { useEffect } from "react";
+import { getDetails } from "./api";
+import Container from "./components/Container";
 
-function App() {
-  return <div className="App"></div>;
+export default function App() {
+  useEffect(() => {
+    getDetails();
+  }, []);
+  return <Container />;
 }
-
-export default App;
