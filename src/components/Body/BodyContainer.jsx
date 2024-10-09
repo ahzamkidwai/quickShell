@@ -18,7 +18,7 @@ export default function BodyContainer({ data }) {
   }, [data]);
 
   return (
-    <div>
+    <div style={{ backgroundColor: "#5F7171" }}>
       {ticketsData?.map((item, index) => {
         return <Card item={item} />;
       })}
